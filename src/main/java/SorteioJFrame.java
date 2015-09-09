@@ -7,6 +7,13 @@
 
 
 import blindguardianbrasil.com.br.Sorteio;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +21,21 @@ import javax.swing.JOptionPane;
  * @author Marlon Prudente
  */
 public class SorteioJFrame extends javax.swing.JFrame {
-
+    /*private BufferedImage img = null;      
+    private int x = 0;    
+    private int y = 0;    
+    
+   
+    public SorteioJFrame(String urlimg) throws IOException{    
+        this.img =  ImageIO.read(new File(urlimg));    
+    }
+    }   
+    public void paintComponent(Graphics g) {    
+        super.paintComponent(g);          
+        Graphics gr = (Graphics2D)g.create();    
+        gr.drawImage(img, x, y,this.getWidth(),this.getHeight(),this);    
+        gr.dispose();       
+    }*/
     /**
      * Creates new form SorteioJFrame
      */
@@ -31,50 +52,76 @@ public class SorteioJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
+        sortear = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        participantes = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 102, 102));
 
-        jButton2.setText("Sortear");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        sortear.setText("Sortear");
+        sortear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                sortearActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Sorteio BGBrasil - Aniversário de Hansi");
+        jLabel1.setText("Sorteio BGBrasil");
+
+        participantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                participantesActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Número de Participantes:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sortear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(participantes))
                 .addGap(115, 115, 115))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jButton2)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(participantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortear)
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Sorteio sorteio = new Sorteio(37,1);
+    private void sortearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortearActionPerformed
+          int numpart = Integer.parseInt(participantes.getText());
+          sorteio = new Sorteio(numpart,1);
         JOptionPane.showMessageDialog(null, "O Vencedor é o Nro.: " + sorteio.GetVencedor());
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_sortearActionPerformed
+
+    private void participantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_participantesActionPerformed
+        // TODO add your handling code here:       
+           //int numpart = Integer.parseInt(participantes.getText());
+         // sorteio = new Sorteio(numpart,1);
+    }//GEN-LAST:event_participantesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,9 +158,11 @@ public class SorteioJFrame extends javax.swing.JFrame {
             }
         });
     }
-
+private Sorteio sorteio;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField participantes;
+    private javax.swing.JButton sortear;
     // End of variables declaration//GEN-END:variables
 }

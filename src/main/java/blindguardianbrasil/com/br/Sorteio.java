@@ -23,7 +23,7 @@ public class Sorteio {
     public Sorteio(int p, int v){
         this.numeropart = p;
         this.numerovenc = v;
-           for (int i = 0; i < p; i++) {
+           for (int i = 1; i <= p; i++) {
            possiveis.add(i);
            }
            Collections.shuffle(possiveis);
@@ -33,7 +33,7 @@ public class Sorteio {
     public Integer GetVencedor() {
         
         Integer vencedor = null;
-        for (int i = 0; i < numerovenc; i++) {
+        for (int i = 1; i <= numerovenc; i++) {
         vencedor =  possiveis.get(i);
         }
 
